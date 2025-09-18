@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../generated/prisma";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,13 +15,13 @@ export const GetSaleRepository = async (
     const where: any = {};
 
     if (filter !== "Todos") {
-      where.statusPagamento = filter; 
+      where.statusPagamento = filter;
     }
 
     if (search) {
       where.nomeProduto = {
         contains: search,
-        mode: "insensitive", 
+        mode: "insensitive",
       };
     }
 
@@ -41,7 +41,7 @@ export const GetSaleRepository = async (
         orderBy = { nomeProduto: "asc" };
         break;
       default:
-        orderBy = { data: "desc" }; 
+        orderBy = { data: "desc" };
     }
 
     const sales = await prisma.sale.findMany({
