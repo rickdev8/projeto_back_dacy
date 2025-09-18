@@ -12,5 +12,7 @@ export const FindSaleRepository = async (RefId: any) => {
     return sale;
   } catch (erro) {
     throw new Error();
+  } finally {
+    prisma.$disconnect();
   }
 };

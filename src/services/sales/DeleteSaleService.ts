@@ -1,4 +1,4 @@
-import { DeleteSaleRepository } from "../repository/DeleteSaleRepository";
+import { DeleteSaleRepository } from "../../repository/sales/DeleteSaleRepository";
 
 export const DeleteSaleService = async (id: string) => {
   try {

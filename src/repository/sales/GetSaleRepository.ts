@@ -62,5 +62,7 @@ export const GetSaleRepository = async (
   } catch (erro) {
     console.error("Erro no GetSaleRepository:", erro);
     throw new Error("Erro ao buscar vendas");
+  } finally {
+    prisma.$disconnect();
   }
 };

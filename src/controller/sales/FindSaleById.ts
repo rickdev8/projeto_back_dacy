@@ -1,5 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { FindSaleByIdService } from "../../services/FindSaleById";
+import { FindSaleByIdService } from "../../services/sales/FindSaleById";
+
 
 export const FindSaleById = async (
   request: FastifyRequest<{ Params: string }>,

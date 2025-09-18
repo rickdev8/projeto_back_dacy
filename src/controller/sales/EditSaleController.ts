@@ -1,16 +1,15 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { FindSaleByIdService } from "../../services/FindSaleById";
 import { Sale } from "../../interfaces/SaleInterface";
-import { EditSaleService } from "../../services/EditSaleService";
-import { DeleteSaleService } from "../../services/DeleteSaleService";
+import { EditSaleService } from "../../services/sales/EditSaleService";
 
-export const DeleteSaleController = async (
+export const EditSaleController = async (
   request: FastifyRequest<{ Params: string; Body: Sale }>,
   reply: FastifyReply
 ) => {
   const id = request.params;
+  const sale: Sale = request.body;
   try {
-    const response = await DeleteSaleService(id);
+    const response = await EditSaleService(id, sale);
     return response;
   } catch (erro) {
     throw new Error();

@@ -1,5 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { GetSaleService, PropsRequestParams, PropsRequestQuery } from "../../services/GetSalesService";
+import { GetSaleService, PropsRequestParams, PropsRequestQuery } from "../../services/sales/GetSalesService";
+
 
 export const GetSalesController = async (
   request: FastifyRequest <{ Params: PropsRequestParams, Querystring: PropsRequestQuery}>,

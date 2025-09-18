@@ -1,4 +1,5 @@
-import { GetSaleRepository } from "../repository/GetSaleRepository";
+import { GetSaleRepository } from "../../repository/sales/GetSaleRepository";
+
 
 export interface PropsRequestParams {
     page: number,

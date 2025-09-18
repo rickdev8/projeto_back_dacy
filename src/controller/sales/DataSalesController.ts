@@ -1,5 +1,5 @@
-import { GetDataSalesService } from "../../services/GetDataSalesService";
-import { GetSaleService } from "../../services/GetSalesService";
+import { GetDataSalesService } from "../../services/sales/GetDataSalesService";
+
 
 export const GetSalesController = async () => {
   try {

@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Sale } from "../interfaces/SaleInterface";
-
+import { Sale } from "../../interfaces/SaleInterface";
 
 const prisma = new PrismaClient();
 
@@ -21,5 +20,7 @@ export const CreateSaleRepository = async (data: Sale) => {
     return venda;
   } catch (erro) {
     throw new Error("Erro ao criar venda");
+  } finally {
+    prisma.$disconnect();
   }
 };

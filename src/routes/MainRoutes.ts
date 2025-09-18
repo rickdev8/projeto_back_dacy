@@ -1,10 +1,11 @@
 import { FastifyInstance } from "fastify";
-import { CreateSaleController } from "../controller/Vendas/CreateSaleController";
-import { GetSalesController } from "../controller/Vendas/GetSalesController";
-import { FindSaleById } from "../controller/Vendas/FindSaleById";
-import { EditSaleController } from "../controller/Vendas/EditSaleController";
-import { DeleteSaleController } from "../controller/Vendas/DeleteSaleController";
-import { GetDataSalesService } from "../services/GetDataSalesService";
+import { CreateSaleController } from "../controller/sales/CreateSaleController";
+import { GetSalesController } from "../controller/sales/GetSalesController";
+import { FindSaleById } from "../controller/sales/FindSaleById";
+import { EditSaleController } from "../controller/sales/EditSaleController";
+import { DeleteSaleController } from "../controller/sales/DeleteSaleController";
+import { GetDataSalesService } from "../services/sales/GetDataSalesService";
+import { UserController } from "../controller/user/UserController";
 
 export default function MainRoutes(app: FastifyInstance) {
   app.post("/homepage/CreateSale", CreateSaleController);
@@ -13,4 +14,5 @@ export default function MainRoutes(app: FastifyInstance) {
   app.put("/homepage/EditSale/:id", EditSaleController);
   app.delete("/homepage/DeleteSale/:id", DeleteSaleController);
   app.get("/homepage/GetDataSales", GetDataSalesService);
+  app.post("/homepage/login", UserController);
 }

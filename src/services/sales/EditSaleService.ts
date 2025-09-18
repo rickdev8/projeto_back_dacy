@@ -1,5 +1,5 @@
-import { Sale } from "../interfaces/SaleInterface";
-import { EditSaleRepository } from "../repository/EditSaleRepository";
+import { Sale } from "../../interfaces/SaleInterface";
+import { EditSaleRepository } from "../../repository/sales/EditSaleRepository";
 
 export const EditSaleService = async (id: string, data: Sale) => {
   try {

@@ -1,12 +1,11 @@
 import { PrismaClient } from "@prisma/client";
-import { Sale } from "../interfaces/SaleInterface";
+import { Sale } from "../../interfaces/SaleInterface";
 
 const prisma = new PrismaClient();
 
 export const EditSaleRepository = async (RefId: any, sale: Sale) => {
-
   try {
-    await prisma.sale.update({
+    const saleUpdate = await prisma.sale.update({
       where: {
         id: RefId.id,
       },
@@ -20,7 +19,10 @@ export const EditSaleRepository = async (RefId: any, sale: Sale) => {
         statusPagamento: sale.statusPagamento,
       },
     });
+    return saleUpdate;
   } catch (erro) {
     throw new Error();
+  } finally {
+    prisma.$disconnect();
   }
 };

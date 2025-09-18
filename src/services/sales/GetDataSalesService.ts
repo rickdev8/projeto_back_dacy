@@ -1,4 +1,5 @@
-import { GetSalesDataRepository } from "../repository/GetDataSalesRepository";
+import { GetSalesDataRepository } from "../../repository/sales/GetDataSalesRepository";
+
 
 
 export const GetDataSalesService = async () => {

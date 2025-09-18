@@ -62,5 +62,7 @@ export const GetSalesDataRepository = async () => {
     };
   } catch (erro) {
     throw new Error("Erro ao buscar lucro total e do dia");
+  } finally {
+    prisma.$disconnect();
   }
 };
