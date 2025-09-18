@@ -1,0 +1,21 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+        
+model Sale {
+  id               String @id @default(uuid())
+  nomeProduto      String @db.VarChar(255)
+  quantidadeProduto Int    @db.Integer()
+  metodoPagamento  String @db.VarChar(255)
+  statusPagamento  String @db.VarChar(255)
+  precoVenda       Int    @db.Integer()
+  precoCusto       Int    @db.Integer()
+  data             DateTime @db.Date
+}
