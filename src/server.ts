@@ -12,6 +12,8 @@ app.register(cors, {
 
 app.register(MainRoutes);
 
-app.listen({ port: 3000, host: "0.0.0.0" }, () => {
-  console.log("Servidor rodando em http://localhost:4000");
+const PORT = Number(process.env.PORT) || 3000;
+
+app.listen({ port: PORT, host: "0.0.0.0" }, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
