@@ -26,7 +26,7 @@ export const GetSaleRepository = async (
       skip,
       take: Number(limit),
       where,
-      orderBy,
+
     });
 
     const totalCount = await prisma.sale.count({ where });
