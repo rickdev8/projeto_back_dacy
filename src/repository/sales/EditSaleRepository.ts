@@ -10,11 +10,11 @@ export const EditSaleRepository = async (RefId: any, sale: Sale) => {
         id: RefId.id,
       },
       data: {
-      
+    
         nomeProduto: sale.nomeProduto,
         precoCusto: Number(sale.precoCusto),
         precoVenda: Number(sale.precoVenda),
-        quantidadeProduto: Number(sale.quantidadeProduto),
+        quantidadeProduto: Number(sale.quantidadeProduto)
 
       },
     });
