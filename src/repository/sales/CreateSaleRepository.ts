@@ -3,7 +3,7 @@ import { Sale } from "../../interfaces/SaleInterface";
 
 const prisma = new PrismaClient();
 
-export const CreateSaleRepository = async (data: any) => {
+export const CreateSaleRepository = async (data: Sale) => {
   try {
     console.log(data);
     const venda = await prisma.sale.create({
