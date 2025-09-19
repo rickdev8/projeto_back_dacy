@@ -25,8 +25,7 @@ export const GetSaleRepository = async (
     const sales = await prisma.sale.findMany({
       skip,
       take: Number(limit),
-      where,
-
+      where
     });
 
     const totalCount = await prisma.sale.count({ where });
@@ -35,7 +34,7 @@ export const GetSaleRepository = async (
     return {
       sales,
       totalPages,
-      currentPage: page,
+      currentPage: page
     };
   } catch (erro) {
     console.error("Erro no GetSaleRepository:", erro);
