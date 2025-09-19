@@ -14,10 +14,6 @@ export const GetSaleRepository = async (
 
     const where: any = {};
 
-    if (filter !== "Todos") {
-      where.statusPagamento = filter;
-    }
-
     if (search) {
       where.nomeProduto = {
         contains: search,
@@ -25,24 +21,6 @@ export const GetSaleRepository = async (
       };
     }
 
-    let orderBy: any = { createdAt: "desc" };
-
-    switch (order) {
-      case "Mais antigos":
-        orderBy = { data: "asc" };
-        break;
-      case "Maior preço":
-        orderBy = { precoVenda: "desc" };
-        break;
-      case "Menor preço":
-        orderBy = { precoVenda: "asc" };
-        break;
-      case "Ordem alfabética":
-        orderBy = { nomeProduto: "asc" };
-        break;
-      default:
-        orderBy = { data: "desc" };
-    }
 
     const sales = await prisma.sale.findMany({
       skip,
