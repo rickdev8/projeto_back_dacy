@@ -14,6 +14,10 @@ export const GetSaleRepository = async (
 
     const where: any = {};
 
+    if (filter !== "Todos") {
+      where.statusPagamento = filter;
+    }
+
     if (search) {
       where.nomeProduto = {
         contains: search,
@@ -21,11 +25,10 @@ export const GetSaleRepository = async (
       };
     }
 
-
     const sales = await prisma.sale.findMany({
       skip,
       take: Number(limit),
-      where
+      where,
     });
 
     const totalCount = await prisma.sale.count({ where });
@@ -34,10 +37,10 @@ export const GetSaleRepository = async (
     return {
       sales,
       totalPages,
-      currentPage: page
+      currentPage: page,
     };
   } catch (erro) {
-    console.error("Erro no GetSaleRepository:", erro);
+    console.error("Erro no GetSaleRepositoryy:", erro);
     throw new Error("Erro ao buscar vendas");
   } finally {
     prisma.$disconnect();
