@@ -10,11 +10,12 @@ export const GetSaleRepository = async (
   search: string
 ) => {
   try {
-    const skip = (page - 1) * limit;
+    const take = Number(limit) || 10;
+    const skip = (Number(page) - 1) * take;
 
     const where: any = {};
 
-    if (filter !== "Todos") {
+    if (filter && filter !== "Todos") {
       where.statusPagamento = filter;
     }
 
@@ -27,22 +28,25 @@ export const GetSaleRepository = async (
 
     const sales = await prisma.sale.findMany({
       skip,
-      take: Number(limit),
+      take,
       where,
+      orderBy: {
+        createdAt: order === "asc" ? "asc" : "desc",
+      },
     });
 
     const totalCount = await prisma.sale.count({ where });
-    const totalPages = Math.ceil(totalCount / limit);
+    const totalPages = Math.ceil(totalCount / take);
 
     return {
       sales,
       totalPages,
-      currentPage: page,
+      currentPage: Number(page),
     };
   } catch (erro) {
-    console.error("Erro no GetSaleRepositoryy:", erro);
+    console.error("Erro no GetSaleRepository:", erro);
     throw new Error("Erro ao buscar vendas");
   } finally {
-    prisma.$disconnect();
+    await prisma.$disconnect();
   }
 };
