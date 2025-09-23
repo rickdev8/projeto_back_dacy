@@ -10,43 +10,39 @@ export const GetSaleRepository = async (
   search: string
 ) => {
   try {
-    const take = Number(limit) || 10;
-    const skip = (Number(page) - 1) * take;
+    const skip = (page - 1) * limit;
 
     const where: any = {};
 
-    if (filter && filter !== "Todos") {
+    if (filter !== "Todos") {
       where.statusPagamento = filter;
     }
 
     if (search) {
       where.nomeProduto = {
-        contains: search,
+        startsWith: search,
         mode: "insensitive",
       };
     }
 
     const sales = await prisma.sale.findMany({
       skip,
-      take,
+      take: Number(limit),
       where,
-      orderBy: {
-        createdAt: order === "asc" ? "asc" : "desc",
-      },
     });
 
     const totalCount = await prisma.sale.count({ where });
-    const totalPages = Math.ceil(totalCount / take);
+    const totalPages = Math.ceil(totalCount / limit);
 
     return {
       sales,
       totalPages,
-      currentPage: Number(page),
+      currentPage: page,
     };
   } catch (erro) {
     console.error("Erro no GetSaleRepository:", erro);
     throw new Error("Erro ao buscar vendas");
   } finally {
-    await prisma.$disconnect();
+    prisma.$disconnect();
   }
 };
