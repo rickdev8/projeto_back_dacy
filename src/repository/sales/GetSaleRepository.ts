@@ -20,7 +20,7 @@ export const GetSaleRepository = async (
 
     if (search) {
       where.nomeProduto = {
-        startsWith: search,
+        startsWith: search, 
         mode: "insensitive",
       };
     }
@@ -29,6 +29,9 @@ export const GetSaleRepository = async (
       skip,
       take: Number(limit),
       where,
+      orderBy: {
+        createdAt: order === "asc" ? "asc" : "desc",
+      },
     });
 
     const totalCount = await prisma.sale.count({ where });
@@ -42,7 +45,5 @@ export const GetSaleRepository = async (
   } catch (erro) {
     console.error("Erro no GetSaleRepository:", erro);
     throw new Error("Erro ao buscar vendas");
-  } finally {
-    prisma.$disconnect();
   }
 };
