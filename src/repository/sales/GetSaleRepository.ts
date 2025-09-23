@@ -29,9 +29,6 @@ export const GetSaleRepository = async (
       skip,
       take: Number(limit),
       where,
-      orderBy: {
-        createdAt: order === "asc" ? "asc" : "desc",
-      },
     });
 
     const totalCount = await prisma.sale.count({ where });
